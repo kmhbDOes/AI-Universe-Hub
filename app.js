@@ -5,12 +5,16 @@ const loadCards = async () => {
     displayCards(data.data.tools);
 }
 
+// Function to append and display cards
 const displayCards = cards => {
     console.log(cards);
     const cardsContainer = document.getElementById('card-container');
-    cardsContainer.innerHTML = `<div class="col">
-                                   <div class="card">
-                                     <img src="..." class="card-img-top" alt="...">
+    cards.forEach(card => {
+        const cardDiv = document.createElement('div');
+        cardDiv.classList.add('col');
+        cardDiv.innerHTML = `
+                                   <div class="card border-radius:20% mt-4">
+                                     <img src="${card.image}" class="card-img-top " alt="...">
                                       <div class="card-body">
                                            <h5 class="card-title">Card title</h5>
                                          <p class="card-text">This is a longer card with supporting text below as a natural
@@ -21,18 +25,17 @@ const displayCards = cards => {
                                       <div class="card-footer border-0 bg-body">                                     
                                           <div class="d-flex justify-content-between">
                                           <div>
-                                          <div>ChatGPT</div>
-                                          <div>Date</div>                     
+                                             <div>ChatGPT</div>
+                                             <div>Date</div>                     
                                           </div>
                                           <div>Arrow</div>
                                           </div>
                                      </div>
                                     </div>                                   
                                 </div>`
+        cardsContainer.appendChild(cardDiv)
+
+    })
+
 
 }
-
-
-
-
-// loadCards();
