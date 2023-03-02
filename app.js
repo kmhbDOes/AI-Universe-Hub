@@ -25,7 +25,7 @@ const displayCards = cards => {
                                       <div class="card-footer border-0 bg-body">                                     
                                           <div class="d-flex justify-content-between">
                                           <div>
-                                             <div>ChatGPT</div>
+                                             <div class="fs-3 fw-bold">${card.name}</div>
                                              <div>Date</div>                     
                                           </div>
                                           <div>Arrow</div>
