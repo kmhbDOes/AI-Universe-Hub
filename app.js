@@ -16,19 +16,23 @@ const displayCards = cards => {
                                    <div class="card border-radius:20% mt-4">
                                      <img src="${card.image}" class="card-img-top " alt="...">
                                       <div class="card-body">
-                                           <h5 class="card-title">Card title</h5>
-                                         <p class="card-text">This is a longer card with supporting text below as a natural
-                                          lead-in to additional
-                                        content. This content is a little bit longer.</p>
+                                           <h5 class="card-title  text-start"">Features</h5>
+                                         <p class="card-text ">
+                                                  <ol>
+                                                     <li>${card.features[0] ? card.features[0] : 'Unavailable'}</li>
+                                                     <li>${card.features[1] ? card.features[1] : 'Unavailable'}</li>
+                                                     <li>${card.features[2] ? card.features[2] : 'Unavailable'}</li>
+                                                    </ol>
+                                         </p>
                                       </div>
                                        <hr class="container" />
-                                      <div class="card-footer border-0 bg-body">                                     
+                                      <div class="card-footer border-0 bg-body">
                                           <div class="d-flex justify-content-between">
                                           <div>
                                              <div class="fs-3 fw-bold">${card.name}</div>
                                              <div>Date</div>                     
                                           </div>
-                                          <div>Arrow</div>
+                                          <div><i class="fa-solid fa-arrow-right btn rounded-circle bg-secondary"></i></div>
                                           </div>
                                      </div>
                                     </div>                                   
@@ -36,6 +40,4 @@ const displayCards = cards => {
         cardsContainer.appendChild(cardDiv)
 
     })
-
-
 }
