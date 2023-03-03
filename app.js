@@ -35,15 +35,15 @@ const displayCards = cards => {
         cardDiv.innerHTML = `
                                    <div class="card border-radius:20% mt-4">
                                      <img src="${card.image}" class="card-img-top img " alt="...">
-                                      <div class="card-body">
+                                      <div class="card-body my-5">
                                            <h5 class="card-title  text-start"">Features</h5>
-                                         <p class="card-text ">
-                                                 
+                                         <p class="card-text ">         
                                                  <ol>
-                                             ${card.features ? card.features.slice(0, 3).map(feat => `<li>${feat ? feat : 'Unavailable'}</li>`).join('')
+                                            ${card.features ? card.features.slice(0, 3).map(feat => `<li>${feat ? feat : 'Unavailable'}</li>`).join('')
                 : '<li>Unavailable</li>'}
                                                </ol>
-                                         </p>
+                                                </p>
+
                                       </div>
                                        <hr class="container" />
                                       <div class="card-footer border-0 bg-body">
@@ -85,7 +85,7 @@ const displayCardDetails = card => {
 
                     <div class="d-flex justify-content-evenly row row-cols-1 row-cols-md-3 g-4"> 
 
-                    <div class="card  border-radius:20% my-4">
+                    <div class="card card-inside  border-radius:20% my-4">
                         <div class="card-body ">
                           <h5 class="card-title">${card.description}</h5>
 
@@ -96,9 +96,9 @@ const displayCardDetails = card => {
                           </div>
 
                           <div class="d-flex justify-content-evenly">
-                          <div><p class=" card-text mt-1 "><span class="fw-bold">Features</span>${card.features ? card.features.features_name : 'Unavailable'}</p> </div>
-                          <div><p class=" card-text mt-1 "><span class="fw-bold">Integrations</span>${card.integrations ? card.integrations.slice(0, 3).map(integration => `<li>${integration ? integration : 'Unavailable'}</li>`).join('')
-            : '<li>Unavailable</li>'}</p> </div>
+                          <div><p class=" card-text mt-1 "><span class="fw-bold">Features</span>${card.features ? card.features.features_name : 'No data Found'}</p> </div>
+                          <div><p class=" card-text mt-1 "><span class="fw-bold">Integrations</span>${card.integrations ? card.integrations.slice(0, 3).map(integration => `<li>${integration ? integration : 'No data Found'}</li>`).join('')
+            : '<li>No data Found</li>'}</p> </div>
             
                          </div>
 
@@ -108,10 +108,11 @@ const displayCardDetails = card => {
 
                       <div class="card border-radius:20% my-4 position-relative">
                          <img src="${card.image_link[0]}" class="img-thumbnail my-3 " alt="...">
+                         <button class="bg-danger btn btn-accuracy text-white position-absolute bottom-50 start-50 translate-middle" style="display: ${card.accuracy.score ? 'block' : 'none'};">${card.accuracy.score ? `${card.accuracy.score * 100}% Accuracy ` : ''} </button>
+
                         <div class="card-body">
                           <h5 class="card-title">${card.input_output_examples ? card.input_output_examples[0].input : 'Unavailable'}</h5>
                           <p class=" card-text mt-1 ">${card.input_output_examples ? card.input_output_examples[0].output : 'Unavailable'}</p>
-                          <button class="bg-danger btn text-white position-absolute top-50 start-50 translate-middle">${card.accuracy ? `${card.accuracy.score * 100}% Accuracy ` : 'Unavailable'} </button>
                          </div>
                        </div>
 
