@@ -8,6 +8,7 @@ const loadCards = async () => {
 // Function to append and display cards
 const displayCards = cards => {
     console.log(cards);
+    cards = cards.slice(0, 6)
     const cardsContainer = document.getElementById('card-container');
     cards.forEach(card => {
         const cardDiv = document.createElement('div');
@@ -30,7 +31,7 @@ const displayCards = cards => {
                                           <div class="d-flex justify-content-between">
                                           <div>
                                              <div class="fs-3 fw-bold">${card.name}</div>
-                                             <div>Date</div>                     
+                                             <div>${card.published_in}</div>                     
                                           </div>
                                           <div><i class="fa-solid fa-arrow-right btn rounded-circle bg-secondary"></i></div>
                                           </div>
