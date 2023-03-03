@@ -1,4 +1,4 @@
-const loadCards = async () => {
+const loadCards = () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     fetch(url)
         .then(res => res.json())
@@ -52,7 +52,7 @@ const displayCards = cards => {
                                              <div>${card.published_in}</div>                     
                                           </div>
                                           <div> <button onclick="loadCardDetails('${card.id}')" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="fa-solid fa-arrow-right"></i> </button></div>
-                                          
+                                         
                                           </div>
                                      </div>
                                     </div>                                   
@@ -82,9 +82,29 @@ const displayCardDetails = card => {
                         </div>
                         <div class="modal-body">
 
-                        </div>
+                    <div class="d-flex justify-content-evenly row row-cols-1 row-cols-md-3 g-4"> 
+
+                    <div class="card border-radius:20% my-4">
+                        <div class="card-body ">
+                          <h5 class="card-title">${card.description}</h5>
+                          <p class=" card-text mt-1 ">${card.input_output_examples[0].output}</p>
+                         </div>
+                       </div>
+
+
+                      <div class="card border-radius:20% my-4">
+                         <img src="${card.image_link[0]}" class="img-thumbnail " alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">${card.input_output_examples[0].input}</h5>
+                          <p class=" card-text mt-1 ">${card.input_output_examples[0].output}</p>
+                         </div>
+                       </div> 
+
+                    </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
     `
 }
 
