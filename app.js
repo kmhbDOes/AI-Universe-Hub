@@ -50,7 +50,7 @@ const displayCards = cards => {
                                           <div class="d-flex justify-content-between">
                                           <div>
                                              <div class="fs-3 fw-bold">${card.name}</div>
-                                             <div>${card.published_in}</div>                     
+                                             <div><i class="fa-solid fa-calendar-days"></i>${card.published_in}</div>                     
                                           </div>
                                           <div> <button onclick="loadCardDetails('${card.id}')" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="fa-solid fa-arrow-right"></i> </button></div>
                                          
@@ -85,19 +85,22 @@ const displayCardDetails = card => {
 
                     <div class="d-flex justify-content-evenly row row-cols-1 row-cols-md-3 g-4"> 
 
-                    <div class="card border-radius:20% my-4">
+                    <div class="card  border-radius:20% my-4">
                         <div class="card-body ">
                           <h5 class="card-title">${card.description}</h5>
 
-                          <div class="d-flex justify-content-evenly my-1">
-                         <div> ${card.pricing ? card.pricing[0].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[0].price : 'Unavailable'}</div>
-                         <div> ${card.pricing ? card.pricing[1].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[1].price : 'Unavailable'}</div>
-                         <div> ${card.pricing ? card.pricing[2].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[2].price : 'Unavailable'}</div>
+                          <div class="d-flex justify-content-evenly my-2">
+                         <div class="text-success border bg-white my-2"> ${card.pricing ? card.pricing[0].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[0].price : 'Unavailable'}</div>
+                         <div class="text-warning  border  my-2""> ${card.pricing ? card.pricing[1].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[1].price : 'Unavailable'}</div>
+                         <div class="text-danger border my-2""> ${card.pricing ? card.pricing[2].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[2].price : 'Unavailable'}</div>
                           </div>
 
                           <div class="d-flex justify-content-evenly">
-                          <p class=" card-text mt-1 ">Features${card.features.features_name ? card.features : 'Unavailable'}</p>
-                          <p class=" card-text mt-1 ">Integrations${card.features[0] ? card.features[0] : 'Unavailable'}</p> </div>
+                          <div><p class=" card-text mt-1 ">Features${card.features ? card.features.features_name : 'Unavailable'}</p> </div>
+                          <div><p class=" card-text mt-1 ">Integrations${card.integrations ? card.integrations.slice(0, 3).map(integration => `<li>${integration ? integration : 'Unavailable'}</li>`).join('')
+            : '<li>Unavailable</li>'}</p> </div>
+
+                         </div>
 
                          </div>
                        </div>
