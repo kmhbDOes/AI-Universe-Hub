@@ -12,19 +12,20 @@ const loadCards = () => {
 //     loadAllCards(data.data.tools);
 // }
 
+
 // Function to append and display cards
 const displayCards = cards => {
     console.log(cards);
 
     // Display Six Phones by default
 
-    cards = cards.slice(0, 6);
+    // cards = cards.slice(0, 6);
 
-    document.getElementById('show-all').addEventListener('click', function () {
-        toggleSpinner = true;
-        cards = cards.slice(0, 10);
+    // document.getElementById('show-all').addEventListener('click', function () {
+    //     toggleSpinner = true;
+    //     cards = cards.slice(0, 10);
 
-    })
+    // })
 
     const cardsContainer = document.getElementById('card-container');
 
@@ -37,11 +38,11 @@ const displayCards = cards => {
                                       <div class="card-body">
                                            <h5 class="card-title  text-start"">Features</h5>
                                          <p class="card-text ">
-                                                  <ol>
-                                                     <li>${card.features[0] ? card.features[0] : 'Unavailable'}</li>
-                                                     <li>${card.features[1] ? card.features[1] : 'Unavailable'}</li>
-                                                     <li>${card.features[2] ? card.features[2] : 'Unavailable'}</li>
-                                                    </ol>
+                                                 
+                                                 <ol>
+                                             ${card.features ? card.features.slice(0, 3).map(feat => `<li>${feat ? feat : 'Unavailable'}</li>`).join('')
+                : '<li>Unavailable</li>'}
+                                               </ol>
                                          </p>
                                       </div>
                                        <hr class="container" />
@@ -89,15 +90,14 @@ const displayCardDetails = card => {
                           <h5 class="card-title">${card.description}</h5>
 
                           <div class="d-flex justify-content-evenly my-1">
-                         <div> ${card.pricing[0].plan} <br> ${card.pricing[0].price}</div>
-                         <div> ${card.pricing[1].plan} <br> ${card.pricing[1].price}</div>
-                         <div> ${card.pricing[2].plan} <br> ${card.pricing[2].price}</div>
-
+                         <div> ${card.pricing ? card.pricing[0].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[0].price : 'Unavailable'}</div>
+                         <div> ${card.pricing ? card.pricing[1].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[1].price : 'Unavailable'}</div>
+                         <div> ${card.pricing ? card.pricing[2].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[2].price : 'Unavailable'}</div>
                           </div>
 
                           <div class="d-flex justify-content-evenly">
-                          <p class=" card-text mt-1 ">Features${card.features}</p>
-                          <p class=" card-text mt-1 ">Integrations${card.features[0]}</p> </div>
+                          <p class=" card-text mt-1 ">Features${card.features.features_name ? card.features : 'Unavailable'}</p>
+                          <p class=" card-text mt-1 ">Integrations${card.features[0] ? card.features[0] : 'Unavailable'}</p> </div>
 
                          </div>
                        </div>
@@ -106,8 +106,8 @@ const displayCardDetails = card => {
                       <div class="card border-radius:20% my-4">
                          <img src="${card.image_link[0]}" class="img-thumbnail " alt="...">
                         <div class="card-body">
-                          <h5 class="card-title">${card.input_output_examples[0].input}</h5>
-                          <p class=" card-text mt-1 ">${card.input_output_examples[0].output}</p>
+                          <h5 class="card-title">${card.input_output_examples ? card.input_output_examples[0].input : 'Unavailable'}</h5>
+                          <p class=" card-text mt-1 ">${card.input_output_examples ? card.input_output_examples[0].output : 'Unavailable'}</p>
                          </div>
                        </div> 
 
