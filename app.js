@@ -87,7 +87,18 @@ const displayCardDetails = card => {
                     <div class="card border-radius:20% my-4">
                         <div class="card-body ">
                           <h5 class="card-title">${card.description}</h5>
-                          <p class=" card-text mt-1 ">${card.input_output_examples[0].output}</p>
+
+                          <div class="d-flex justify-content-evenly my-1">
+                         <div> ${card.pricing[0].plan} <br> ${card.pricing[0].price}</div>
+                         <div> ${card.pricing[1].plan} <br> ${card.pricing[1].price}</div>
+                         <div> ${card.pricing[2].plan} <br> ${card.pricing[2].price}</div>
+
+                          </div>
+
+                          <div class="d-flex justify-content-evenly">
+                          <p class=" card-text mt-1 ">Features${card.features}</p>
+                          <p class=" card-text mt-1 ">Integrations${card.features[0]}</p> </div>
+
                          </div>
                        </div>
 
