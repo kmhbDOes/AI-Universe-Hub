@@ -1,15 +1,33 @@
 const loadCards = async () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`
-    const res = await fetch(url)
-    const data = await res.json()
-    displayCards(data.data.tools);
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayCards(data.data.tools));
 }
+
+// const loadAllCards = async () => {
+//     const url = `https://openapi.programming-hero.com/api/ai/tools`
+//     const res = await fetch(url)
+//     const data = await res.json()
+//     loadAllCards(data.data.tools);
+// }
 
 // Function to append and display cards
 const displayCards = cards => {
     console.log(cards);
-    cards = cards.slice(0, 6)
+
+    // Display Six Phones by default
+
+    cards = cards.slice(0, 6);
+
+    document.getElementById('show-all').addEventListener('click', function () {
+        toggleSpinner = true;
+        cards = cards.slice(0, 10);
+
+    })
+
     const cardsContainer = document.getElementById('card-container');
+
     cards.forEach(card => {
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('col');
@@ -33,7 +51,8 @@ const displayCards = cards => {
                                              <div class="fs-3 fw-bold">${card.name}</div>
                                              <div>${card.published_in}</div>                     
                                           </div>
-                                          <div><i class="fa-solid fa-arrow-right btn rounded-circle bg-secondary"></i></div>
+                                          <div> <button onclick="loadCardDetails('${card.id}')" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="fa-solid fa-arrow-right"></i> </button></div>
+                                          
                                           </div>
                                      </div>
                                     </div>                                   
@@ -42,3 +61,30 @@ const displayCards = cards => {
 
     })
 }
+
+
+const loadCardDetails = id => {
+    const url = ` https://openapi.programming-hero.com/api/ai/tool/${id}`
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayCardDetails(data.data));
+}
+
+const displayCardDetails = card => {
+    console.log(card);
+    const modalTitle = document.getElementById('exampleModalLabel')
+    card.forEach
+    modalTitle.innerHTML = `
+                               
+                            <div class="modal-header">
+                            <h5 class="modal-title">${card.tool_name}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    `
+}
+
