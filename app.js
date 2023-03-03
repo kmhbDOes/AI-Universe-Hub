@@ -106,12 +106,12 @@ const displayCardDetails = card => {
                        </div>
 
 
-                      <div class="card border-radius:20% my-4">
+                      <div class="card border-radius:20% my-4 position-relative">
                          <img src="${card.image_link[0]}" class="img-thumbnail my-3 " alt="...">
                         <div class="card-body">
                           <h5 class="card-title">${card.input_output_examples ? card.input_output_examples[0].input : 'Unavailable'}</h5>
                           <p class=" card-text mt-1 ">${card.input_output_examples ? card.input_output_examples[0].output : 'Unavailable'}</p>
-                          <button class="bg-danger btn text-white position-absolute top-50 start-50 translate-middle">${card.accuracy.score} </button>
+                          <button class="bg-danger btn text-white position-absolute top-50 start-50 translate-middle">${card.accuracy ? `${card.accuracy.score * 100}% Accuracy ` : 'Unavailable'} </button>
                          </div>
                        </div>
 
