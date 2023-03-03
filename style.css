@@ -5,7 +5,12 @@
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 .card-img-top {
-  height: 25%;
+  height: 200px;
+  object-fit: cover;
   border-radius: 2em;
   box-shadow: 0 3px 5px rgba(227, 218, 218, 0.2);
+}
+
+.card-body {
+  height: 250px;
 }
