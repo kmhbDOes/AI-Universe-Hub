@@ -89,14 +89,14 @@ const displayCardDetails = card => {
                         <div class="card-body ">
                           <h5 class="card-title">${card.description}</h5>
 
-                          <div class="d-flex justify-content-evenly my-2">
+                          <div class="d-flex justify-content-evenly my-1 fw-bold">
                          <div class="text-success border bg-white my-2"> ${card.pricing ? card.pricing[0].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[0].price : 'Unavailable'}</div>
-                         <div class="text-warning  border  my-2""> ${card.pricing ? card.pricing[1].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[1].price : 'Unavailable'}</div>
+                         <div class="text-warning  border  my-2""> ${card.pricing ? card.pricing[1].plan : 'Free of cost'} <br> ${card.pricing ? card.pricing[1].price : 'Unavailable'}</div>
                          <div class="text-danger border my-2""> ${card.pricing ? card.pricing[2].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[2].price : 'Unavailable'}</div>
                           </div>
 
-                          <div class="d-flex justify-content-evenly">
-                          <div><p class=" card-text mt-1 "><span class="fw-bold">Features</span>${card.features ? card.features.features_name : 'No data Found'}</p> </div>
+                          <div class="d-flex justify-content-evenly ">
+                          <div><p class=" card-text mt-1 "><span class="fw-bold">Features</span> <br>${card.features ? card.features['1'].feature_name : 'No data Found'} <br> ${card.features ? card.features['2'].feature_name : 'No data Found'} <br> ${card.features ? card.features['3'].feature_name : 'No data Found'}</p> </div>
                           <div><p class=" card-text mt-1 "><span class="fw-bold">Integrations</span>${card.integrations ? card.integrations.slice(0, 3).map(integration => `<li>${integration ? integration : 'No data Found'}</li>`).join('')
             : '<li>No data Found</li>'}</p> </div>
             
@@ -106,11 +106,11 @@ const displayCardDetails = card => {
                        </div>
 
 
-                      <div class="card border-radius:20% my-4 position-relative">
+                      <div class="card card-inside border-radius:20% my-4 position-relative">
                          <img src="${card.image_link[0]}" class="img-thumbnail my-3 " alt="...">
                          <button class="bg-danger btn btn-accuracy text-white position-absolute bottom-50 start-50 translate-middle" style="display: ${card.accuracy.score ? 'block' : 'none'};">${card.accuracy.score ? `${card.accuracy.score * 100}% Accuracy ` : ''} </button>
 
-                        <div class="card-body">
+                        <div class="card-body mb-3">
                           <h5 class="card-title">${card.input_output_examples ? card.input_output_examples[0].input : 'Unavailable'}</h5>
                           <p class=" card-text mt-1 ">${card.input_output_examples ? card.input_output_examples[0].output : 'Unavailable'}</p>
                          </div>

@@ -12,9 +12,11 @@
 }
 
 .card-body {
-  height: 200px;
+  height: 280px !important;
+  width: 320px !important;
 }
 
 .card-inside {
-  height: 500px !important;
+  height: 540px !important;
+  width: 340px !important;
 }
