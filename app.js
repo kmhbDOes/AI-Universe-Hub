@@ -1,44 +1,67 @@
-async function getCards() {
-    try {
-        const response = await fetch("https://openapi.programming-hero.com/api/ai/tools");
-        const data = await response.json();
+// function getCards() {
 
-        console.log(data.data.tools);
-        return data.data.tools;
-    }
-    catch (error) {
-        console.log(error);
-    }
+//     fetch("https://openapi.programming-hero.com/api/ai/tools")
+//         .then(response => response.json())
+//         .then(data => displayCards(data.data.tools))
+
+//     // console.log(data.data.tools);
+//     // return data.data.tools;
+
+
+// }
+
+// function loadCards() {
+//     let all_cards = getCards();
+//     cards = all_cards.slice(0, 6);
+//     displayCards(cards);
+// }
+
+
+// document.getElementById('show-all').addEventListener('click', function () {
+
+//     toggleSpinner(true);
+//     all_cards = getCards();
+//     cards = cards.slice(6, 12);
+//     displayCards(cards, (showAll = false));
+
+//     setTimeout(function () {
+//         toggleSpinner(false);
+//     }, 1000);
+// })
+
+function getCards() {
+    return fetch("https://openapi.programming-hero.com/api/ai/tools")
+        .then(response => response.json())
+        .then(data => data.data.tools);
 }
 
-async function loadCards() {
-    all_cards = await getCards();
-    cards = all_cards.slice(0, 6);
-    displayCards(cards);
+function loadCards() {
+    getCards()
+        .then(cards => {
+            const slicedCards = cards.slice(0, 6);
+            displayCards(slicedCards);
+        });
 }
-
 
 document.getElementById('show-all').addEventListener('click', function () {
-
     toggleSpinner(true);
-    all_cards = await getCards();
-    cards = cards.slice(6, 12);
-    displayCards(cards, (showAll = false));
+    getCards()
+        .then(cards => {
+            const slicedCards = cards.slice(6, 12);
+            displayCards(slicedCards, (showAll = false));
+            toggleSpinner(false);
+        });
+});
 
-    setTimeout(function () {
-        toggleSpinner(false);
-    }, 1000);
-})
 
 
 // Function to append and display cards
 const displayCards = (cards, showAllButton = true) => {
-    console.log(cards);
 
     const cardsContainer = document.getElementById('card-container');
     const showAll = document.getElementById('show-all');
 
-    if (showAll) {
+    if (showAllButton) {
         showAll.classList.remove('d-none');
     }
     else {
@@ -150,5 +173,3 @@ const toggleSpinner = isLoading => {
         loadSpinner.classList.add('d-none')
     }
 }
-
-
