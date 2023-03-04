@@ -27,13 +27,22 @@
 
     <!-- Main Section -->
     <main class="container">
+
+        <!-- Spinner -->
+
+        <section>
+            <div id="spinner" class="spinner-border text-danger my-4 d-flex  mx-auto d-none" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </section>
+
         <section>
             <!-- Card Container -->
             <div id="card-container" class=" row row-cols-1 row-cols-md-3 g-4">
             </div>
             <div>
-                <button id="show-all" class="btn rounded-pill bg-danger text-white my-3 mx-auto d-flex">Show
-                    All</button>
+                <button id="show-all" class="btn rounded-pill bg-danger text-white my-3 mx-auto d-flex d-none">See
+                    More</button>
             </div>
         </section>
 

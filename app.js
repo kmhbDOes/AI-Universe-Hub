@@ -5,6 +5,12 @@ const loadCards = () => {
         .then(data => displayCards(data.data.tools));
 }
 
+// const callApi = (url) = {
+//     fetch(url)
+//         .then(res => res.json())
+//         .then(data => displayCards(data.data.tools));
+// }
+
 // const loadAllCards = async () => {
 //     const url = `https://openapi.programming-hero.com/api/ai/tools`
 //     const res = await fetch(url)
@@ -17,23 +23,35 @@ const loadCards = () => {
 const displayCards = cards => {
     console.log(cards);
 
-    // Display Six Phones by default
-
-    // cards = cards.slice(0, 6);
-
-    // document.getElementById('show-all').addEventListener('click', function () {
-    //     toggleSpinner = true;
-    //     cards = cards.slice(0, 10);
-
-    // })
 
     const cardsContainer = document.getElementById('card-container');
+
+    // Display Six Phones by default
+
+
+    const showAll = document.getElementById('show-all');
+    cards = cards.slice(0, 6);
+    showAll.classList.remove('d-none')
+
+    document.getElementById('show-all').addEventListener('click', function () {
+        toggleSpinner(true);
+        loadCards = (`https://openapi.programming-hero.com/api/ai/tools`)
+        cards = cards.slice(6, 12);
+        showAll.classList.add('d-none')
+        console.log("See more cards", cards);
+    })
+
+    // else {
+    //     cards = cards.slice(0, 12);
+    //     showAll.classList.add('d-none')
+    //     console.log("See more cards", cards);
+    // }
 
     cards.forEach(card => {
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('col');
         cardDiv.innerHTML = `
-                                   <div class="card border-radius:20% mt-4">
+                                   <div class="card border-radius:20% my-4">
                                      <img src="${card.image}" class="card-img-top img " alt="...">
                                       <div class="card-body my-5">
                                            <h5 class="card-title  text-start"">Features</h5>
@@ -61,6 +79,7 @@ const displayCards = cards => {
         cardsContainer.appendChild(cardDiv)
 
     })
+    toggleSpinner(false);
 }
 
 
@@ -124,3 +143,20 @@ const displayCardDetails = card => {
     `
 }
 
+const toggleSpinner = isLoading => {
+    const loadSpinner = document.getElementById('spinner')
+    if (isLoading) {
+        loadSpinner.classList.remove('d-none')
+    }
+    else {
+        loadSpinner.classList.add('d-none')
+    }
+}
+
+// document.getElementById('show-all').addEventListener('click', function () {
+//     // toggleSpinner = true;
+//     loadCards('https://openapi.programming-hero.com/api/ai/tools')
+//     cards = cards.slice(0, 12);
+//     showAll.classList.add('d-none')
+//     console.log("See more cards", cards);
+// })
