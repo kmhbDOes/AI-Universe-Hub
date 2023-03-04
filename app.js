@@ -1,51 +1,50 @@
-const loadCards = () => {
-    const url = `https://openapi.programming-hero.com/api/ai/tools`
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displayCards(data.data.tools));
+async function getCards() {
+    try {
+        const response = await fetch("https://openapi.programming-hero.com/api/ai/tools");
+        const data = await response.json();
+
+        console.log(data.data.tools);
+        return data.data.tools;
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 
-// const callApi = (url) = {
-//     fetch(url)
-//         .then(res => res.json())
-//         .then(data => displayCards(data.data.tools));
-// }
+async function loadCards() {
+    all_cards = await getCards();
+    cards = all_cards.slice(0, 6);
+    displayCards(cards);
+}
 
-// const loadAllCards = async () => {
-//     const url = `https://openapi.programming-hero.com/api/ai/tools`
-//     const res = await fetch(url)
-//     const data = await res.json()
-//     loadAllCards(data.data.tools);
-// }
+
+document.getElementById('show-all').addEventListener('click', function () {
+
+    toggleSpinner(true);
+    all_cards = await getCards();
+    cards = cards.slice(6, 12);
+    displayCards(cards, (showAll = false));
+
+    setTimeout(function () {
+        toggleSpinner(false);
+    }, 1000);
+})
 
 
 // Function to append and display cards
-const displayCards = cards => {
+const displayCards = (cards, showAllButton = true) => {
     console.log(cards);
 
-
     const cardsContainer = document.getElementById('card-container');
-
-    // Display Six Phones by default
-
-
     const showAll = document.getElementById('show-all');
-    cards = cards.slice(0, 6);
-    showAll.classList.remove('d-none')
 
-    document.getElementById('show-all').addEventListener('click', function () {
-        toggleSpinner(true);
-        loadCards = (`https://openapi.programming-hero.com/api/ai/tools`)
-        cards = cards.slice(6, 12);
-        showAll.classList.add('d-none')
-        console.log("See more cards", cards);
-    })
+    if (showAll) {
+        showAll.classList.remove('d-none');
+    }
+    else {
+        showAll.classList.add('d-none');
 
-    // else {
-    //     cards = cards.slice(0, 12);
-    //     showAll.classList.add('d-none')
-    //     console.log("See more cards", cards);
-    // }
+    }
 
     cards.forEach(card => {
         const cardDiv = document.createElement('div');
@@ -79,7 +78,6 @@ const displayCards = cards => {
         cardsContainer.appendChild(cardDiv)
 
     })
-    toggleSpinner(false);
 }
 
 
@@ -153,10 +151,4 @@ const toggleSpinner = isLoading => {
     }
 }
 
-// document.getElementById('show-all').addEventListener('click', function () {
-//     // toggleSpinner = true;
-//     loadCards('https://openapi.programming-hero.com/api/ai/tools')
-//     cards = cards.slice(0, 12);
-//     showAll.classList.add('d-none')
-//     console.log("See more cards", cards);
-// })
+
