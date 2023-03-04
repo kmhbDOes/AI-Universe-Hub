@@ -37,16 +37,16 @@ const displayCards = cards => {
                                      <img src="${card.image}" class="card-img-top img " alt="...">
                                       <div class="card-body my-5">
                                            <h5 class="card-title  text-start"">Features</h5>
-                                         <p class="card-text ">         
-                                                 <ol>
+                                         <p class="card-text my-3 feature-text ">         
+                                             <ol>
                                             ${card.features ? card.features.slice(0, 3).map(feat => `<li>${feat ? feat : 'Unavailable'}</li>`).join('')
                 : '<li>Unavailable</li>'}
-                                               </ol>
+                                            </ol>
                                                 </p>
 
                                       </div>
                                        <hr class="container" />
-                                      <div class="card-footer border-0 bg-body">
+                                      <div class="card-footer border-0 bg-body my-1">
                                           <div class="d-flex justify-content-between">
                                           <div>
                                              <div class="fs-3 fw-bold">${card.name}</div>
@@ -89,7 +89,7 @@ const displayCardDetails = card => {
                         <div class="card-body ">
                           <h5 class="card-title">${card.description}</h5>
 
-                          <div class="d-flex justify-content-evenly my-1 fw-bold my-5">
+                          <div class="d-flex justify-content-evenly my-1 fw-bold git a">
                          <div class="text-success border bg-white rounded-3 mx-2 my-2"> ${card.pricing ? card.pricing[0].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[0].price : 'Unavailable'}</div>
                          <div class="text-warning  border bg-white rounded-3 mx-2 my-2""> ${card.pricing ? card.pricing[1].plan : 'Free of cost'} <br> ${card.pricing ? card.pricing[1].price : 'Unavailable'}</div>
                          <div class="text-danger border bg-white rounded-3 mx-2 my-2""> ${card.pricing ? card.pricing[2].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[2].price : 'Unavailable'}</div>
