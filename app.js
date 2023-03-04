@@ -21,6 +21,9 @@ document.getElementById('show-all').addEventListener('click', function () {
             displayCards(slicedCards, (showAll = false));
             toggleSpinner(false);
         });
+    setTimeout(function () {
+        toggleSpinner(false);
+    }, 1000);
 });
 
 
@@ -131,7 +134,7 @@ const displayCardDetails = card => {
 
                         <div class="card-body mb-3">
                           <h5 class="card-title">${card.input_output_examples ? card.input_output_examples[0].input : 'No data Found'}</h5>
-                          <p class=" card-text mt-1 ">${card.input_output_examples ? card.input_output_examples[0].output : 'No data Found'}</p>
+                          <p class=" card-text mt-1 ">${card.input_output_examples ? card.input_output_examples[0].output : 'No! Not Yet! Take a break!'}</p>
                          </div>
                        </div>
 
