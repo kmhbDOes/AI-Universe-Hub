@@ -1,34 +1,3 @@
-// function getCards() {
-
-//     fetch("https://openapi.programming-hero.com/api/ai/tools")
-//         .then(response => response.json())
-//         .then(data => displayCards(data.data.tools))
-
-//     // console.log(data.data.tools);
-//     // return data.data.tools;
-
-
-// }
-
-// function loadCards() {
-//     let all_cards = getCards();
-//     cards = all_cards.slice(0, 6);
-//     displayCards(cards);
-// }
-
-
-// document.getElementById('show-all').addEventListener('click', function () {
-
-//     toggleSpinner(true);
-//     all_cards = getCards();
-//     cards = cards.slice(6, 12);
-//     displayCards(cards, (showAll = false));
-
-//     setTimeout(function () {
-//         toggleSpinner(false);
-//     }, 1000);
-// })
-
 function getCards() {
     return fetch("https://openapi.programming-hero.com/api/ai/tools")
         .then(response => response.json())
@@ -43,6 +12,7 @@ function loadCards() {
         });
 }
 
+// Event Listener of Show All Button
 document.getElementById('show-all').addEventListener('click', function () {
     toggleSpinner(true);
     getCards()
@@ -56,17 +26,26 @@ document.getElementById('show-all').addEventListener('click', function () {
 
 
 // Function to append and display cards
+
 const displayCards = (cards, showAllButton = true) => {
 
     const cardsContainer = document.getElementById('card-container');
     const showAll = document.getElementById('show-all');
 
+    // Condition for showing and hiding show all button
     if (showAllButton) {
         showAll.classList.remove('d-none');
     }
     else {
         showAll.classList.add('d-none');
 
+    }
+
+    function sortByPublishedIn() {
+        cards.sort(function (a, b) {
+            return new Date(b.published_in) - new Date(a.published_in);
+        });
+        renderCardList();
     }
 
     cards.forEach(card => {
@@ -79,8 +58,8 @@ const displayCards = (cards, showAllButton = true) => {
                                            <h5 class="card-title  text-start"">Features</h5>
                                          <p class="card-text my-3 feature-text ">         
                                              <ol>
-                                            ${card.features ? card.features.slice(0, 3).map(feat => `<li>${feat ? feat : 'Unavailable'}</li>`).join('')
-                : '<li>Unavailable</li>'}
+                                            ${card.features ? card.features.slice(0, 3).map(feat => `<li>${feat ? feat : 'No data Found'}</li>`).join('')
+                : '<li>No data Found</li>'}
                                             </ol>
                                                 </p>
 
@@ -130,9 +109,9 @@ const displayCardDetails = card => {
                           <h5 class="card-title">${card.description}</h5>
 
                           <div class="d-flex justify-content-evenly my-1 fw-bold git a">
-                         <div class="text-success border bg-white rounded-3 mx-2 my-2"> ${card.pricing ? card.pricing[0].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[0].price : 'Unavailable'}</div>
-                         <div class="text-warning  border bg-white rounded-3 mx-2 my-2""> ${card.pricing ? card.pricing[1].plan : 'Free of cost'} <br> ${card.pricing ? card.pricing[1].price : 'Unavailable'}</div>
-                         <div class="text-danger border bg-white rounded-3 mx-2 my-2""> ${card.pricing ? card.pricing[2].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[2].price : 'Unavailable'}</div>
+                         <div class="text-success border bg-white rounded-3 mx-2 my-2"> ${card.pricing ? card.pricing[0].plan : 'No data Found'} <br> ${card.pricing ? card.pricing[0].price : 'Free of Cost'}</div>
+                         <div class="text-warning  border bg-white rounded-3 mx-2 my-2""> ${card.pricing ? card.pricing[1].plan : 'No data Found'} <br> ${card.pricing ? card.pricing[1].price : 'Free of Cost'}</div>
+                         <div class="text-danger border bg-white rounded-3 mx-2 my-2""> ${card.pricing ? card.pricing[2].plan : 'No data Found'} <br> ${card.pricing ? card.pricing[2].price : 'Free of Cost'}</div>
                           </div>
 
                           <div class="d-flex justify-content-evenly ">
@@ -151,8 +130,8 @@ const displayCardDetails = card => {
                          <button class="bg-danger btn btn-accuracy text-white position-absolute bottom-50 start-50 translate-middle" style="display: ${card.accuracy.score ? 'block' : 'none'};">${card.accuracy.score ? `${card.accuracy.score * 100}% Accuracy ` : ''} </button>
 
                         <div class="card-body mb-3">
-                          <h5 class="card-title">${card.input_output_examples ? card.input_output_examples[0].input : 'Unavailable'}</h5>
-                          <p class=" card-text mt-1 ">${card.input_output_examples ? card.input_output_examples[0].output : 'Unavailable'}</p>
+                          <h5 class="card-title">${card.input_output_examples ? card.input_output_examples[0].input : 'No data Found'}</h5>
+                          <p class=" card-text mt-1 ">${card.input_output_examples ? card.input_output_examples[0].output : 'No data Found'}</p>
                          </div>
                        </div>
 
