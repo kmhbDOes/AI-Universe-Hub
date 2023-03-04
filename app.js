@@ -85,14 +85,14 @@ const displayCardDetails = card => {
 
                     <div class="d-flex justify-content-evenly row row-cols-1 row-cols-md-3 g-4"> 
 
-                    <div class="card card-inside  border-radius:20% my-4">
+                    <div class="card card-inside card-1  border-radius:20% my-4">
                         <div class="card-body ">
                           <h5 class="card-title">${card.description}</h5>
 
-                          <div class="d-flex justify-content-evenly my-1 fw-bold">
-                         <div class="text-success border bg-white my-2"> ${card.pricing ? card.pricing[0].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[0].price : 'Unavailable'}</div>
-                         <div class="text-warning  border  my-2""> ${card.pricing ? card.pricing[1].plan : 'Free of cost'} <br> ${card.pricing ? card.pricing[1].price : 'Unavailable'}</div>
-                         <div class="text-danger border my-2""> ${card.pricing ? card.pricing[2].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[2].price : 'Unavailable'}</div>
+                          <div class="d-flex justify-content-evenly my-1 fw-bold my-5">
+                         <div class="text-success border bg-white rounded-3 mx-2 my-2"> ${card.pricing ? card.pricing[0].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[0].price : 'Unavailable'}</div>
+                         <div class="text-warning  border bg-white rounded-3 mx-2 my-2""> ${card.pricing ? card.pricing[1].plan : 'Free of cost'} <br> ${card.pricing ? card.pricing[1].price : 'Unavailable'}</div>
+                         <div class="text-danger border bg-white rounded-3 mx-2 my-2""> ${card.pricing ? card.pricing[2].plan : 'Unavailable'} <br> ${card.pricing ? card.pricing[2].price : 'Unavailable'}</div>
                           </div>
 
                           <div class="d-flex justify-content-evenly ">
